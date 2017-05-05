@@ -1,0 +1,11 @@
+{
+    "name": "on-Bacon",
+    "varsion": "1.0",
+    "main": "app.js",
+    "dependencies": {
+        "express": "^4.10.7",
+        "ejs": "^2.0.8",
+        "bluebird": "^2.8.0",
+        "mongodb": "^2.2.26"
+    }
+}

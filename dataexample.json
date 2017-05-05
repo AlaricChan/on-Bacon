@@ -1,0 +1,35 @@
+[
+    {
+        "macaddress": "00:11:22:33:44:77",
+        "ubuntu": {
+            "networkDevices": [
+                {
+                    "device": "ens31",
+                    "ipv4": {
+                        "ipAddr": "192.168.100.29",
+                        "gateway": "192.168.100.1",
+                        "netmask": "255.255.255.0",
+                        "vlanIds": [10]
+                    }
+                },
+                {
+                    "device": "p255p1",
+                    "ipv4": {
+                        "ipAddr": "172.31.128.10",
+                        "gateway": "172.31.128.1",
+                        "netmask": "255.255.255.0"
+                    }
+                },
+                {
+                    "device": "p3p1",
+                    "ipv4": {
+                        "ipAddr": "192.168.101.89",
+                        "gateway": "192.168.101.1",
+                        "netmask": "255.255.255.0"
+                    }
+                }
+            ],
+            "installDisk": "/dev/sda"
+        }
+    }
+]
