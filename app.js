@@ -1,10 +1,12 @@
 var express = require('express')
 var path = require('path');
-var app = express();
 var promise = require('bluebird');
 var ejs = require('ejs');
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
 
-// use DEBUG=express:* node app.js
+//use DEBUG=express:* node app.js
 
 //connect to mongo db
 // Retrieve
@@ -27,11 +29,10 @@ MongoClient.connect("mongodb://localhost:27017/cmdb", function(err, db) {
   }
 });
 
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 //setup static file option on route /static
 app.use('/static', express.static(path.join(__dirname, 'static')));
-
-
 //simple template renderer
 // It loads files from static directory and renderer it with options 
 // available in the request query
@@ -42,6 +43,15 @@ app.get('/templates/:filename', function(req, res, next) {
         res.status(404).send({errorMessage: err.message});
     }
 });
+
+app.put('/templates/:filename', function(req, res, next) {
+    try {
+        res.send(renderFile(req.params.filename, req.body));
+    } catch (err) {
+        res.status(404).send({errorMessage: err.message});
+    }
+});
+
 
 // this route is used for with a cmdb
 // find a match to the filename in the database
