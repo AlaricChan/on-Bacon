@@ -44,7 +44,7 @@ app.get('/templates/:filename', function(req, res, next) {
     }
 });
 
-app.put('/templates/:filename', function(req, res, next) {
+app.post('/templates/:filename', function(req, res, next) {
     try {
         res.send(renderFile(req.params.filename, req.body));
     } catch (err) {
