@@ -1,12 +1,19 @@
 {
   "name": "on-Bacon",
-  "varsion": "1.0",
+  "version": "1.0.0",
   "main": "app.js",
   "dependencies": {
     "bluebird": "^2.8.0",
     "body-parser": "^1.17.2",
+    "commander": "^2.11.0",
     "ejs": "^2.0.8",
     "express": "^4.10.7",
     "mongodb": "^2.2.26"
+  },
+  "directories": {
+    "bin": "./bin"
+  },
+  "bin": {
+    "render": "./bin/render"
   }
 }

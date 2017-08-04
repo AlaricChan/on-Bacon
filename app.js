@@ -2,11 +2,8 @@ var express = require('express')
 var path = require('path');
 var promise = require('bluebird');
 var ejs = require('ejs');
-var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-
-//use DEBUG=express:* node app.js
 
 //connect to mongo db
 // Retrieve

@@ -1,0 +1,49 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var path = require('path');
+var promise = require('bluebird');
+var ejs = require('ejs');
+var parser = require('commander'); 
+var pkg = require('../package.json');
+
+function renderFile(filename, options) {
+    var template = require('fs').readFileSync(filename, 'utf8');
+    return ejs.render(template, options);         
+}
+
+function convertToJson(filename) {
+    var jsonfile = require('fs').readFileSync(filename, 'utf8');
+    return JSON.parse(jsonfile);
+}
+
+function writToFile(filename, data){
+    if (filename != undefined){
+       var fs = require('fs');
+       fs.writeFile(filename, data, function(err) {
+           if(err) {
+              return console.log(err);
+           }
+       });
+    } else {
+       console.log(data);
+    }
+}
+
+parser.version(pkg.version)
+  .option('-v --version', 'get version')
+  .option('-t --template [type]', 'template file to render')
+  .option('-j --jsonfile [type]', 'json data file')
+  .option('-o --outputfile [type]', 'output file')
+  .parse(process.argv);
+
+
+// starts here
+if(parser.template && parser.jsonfile) {
+    writToFile( parser.outputfile,
+       renderFile( parser.template, 
+            convertToJson(parser.jsonfile)));
+} else {
+     console.error('failed to run the renderer');
+}
